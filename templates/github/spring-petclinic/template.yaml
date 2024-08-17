@@ -97,7 +97,7 @@ spec:
             - properties:
                 # Show no extra properties when GitHub Actions is selected
                 ci:
-                  const: ./skeletons/github-actions/
+                  const: ./skeleton/github-actions/
             - required:
                 - imageRepository
                 - namespace
