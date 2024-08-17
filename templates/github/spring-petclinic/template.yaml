@@ -223,8 +223,8 @@ spec:
         values:
           component_id: ${{ parameters.artifactId }}
           description: ${{ parameters.description }}
-          destination: https://github.com/${{ parameters.owner }}/${{parameters.artifactId}}-gitops.git
-          source_repository: https://github.com/${{ parameters.owner }}/${{parameters.artifactId}}.git
+          destination: https://github.com/${{ parameters.orgName }}/${{parameters.artifactId}}-gitops.git
+          source_repository: https://github.com/${{ parameters.orgName }}/${{parameters.artifactId}}.git
           repository_name: ${{parameters.artifactId}}
           git_owner: ${{ parameters.owner }}
           cluster: .apps.cluster-lqhhl.sandbox3194.opentlc.com
@@ -232,7 +232,7 @@ spec:
           port: 8080
           repository_host: github.com
           deployment_name: quarkus-template
-          user: ${{ user.entity.metadata.name }}
+          user: ${{ parameters.owner }}
         targetPath: ./tenant-gitops
 
     - id: publish-gitops
@@ -254,7 +254,7 @@ spec:
         appName: ${{ parameters.artifactId }}-bootstrap
         argoInstance: main
         namespace: janus-argocd
-        repoUrl: https://${{ parameters.repo.host }}/${{ parameters.owner }}/${{ parameters.artifactId }}-gitops.git
+        repoUrl: https://github.com/${{ parameters.orgName }}/${{ parameters.artifactId }}-gitops.git
         path: 'argocd/'
 
   output:
