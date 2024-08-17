@@ -3,27 +3,27 @@ kind: Deployment
 metadata:
   annotations:
   labels:
-    app: spring-petclinic
+    app: ${{ values.component_id }}
     app.kubernetes.io/component: web
     app.kubernetes.io/instance: spring-petclinic
     app.kubernetes.io/name: spring-petclinic
     app.kubernetes.io/part-of: spring-petclinic
     app.openshift.io/runtime: java
-  name: spring-petclinic
+  name: ${{ values.component_id }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: spring-petclinic
+      app: ${{ values.component_id }}
   template:
     metadata:
       labels:
-        app: spring-petclinic
+        app: ${{ values.component_id }}
     spec:
       containers:
-      - name: spring-petclinic
+      - name: ${{ values.component_id }}
         imagePullPolicy: Always
-        image: quay.io/nmalvankar/spring-petclinic:latest
+        image: ${{ values.image }}
         livenessProbe:
           failureThreshold: 3
           httpGet:
@@ -57,21 +57,21 @@ kind: Deployment
 metadata:
   name: postgresql
   labels:
-    app: spring-petclinic
+    app: ${{ values.component_id }}
     app.kubernetes.io/component: database
-    app.kubernetes.io/instance: spring-petclinic
+    app.kubernetes.io/instance: ${{ values.component_id }}
     app.kubernetes.io/name: postgresql
-    app.kubernetes.io/part-of: spring-petclinic
+    app.kubernetes.io/part-of: ${{ values.component_id }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: spring-petclinic
+      app: ${{ values.component_id }}
       name: postgresql
   template:
     metadata:
       labels:
-        app: spring-petclinic
+        app: ${{ values.component_id }}
         name: postgresql
     spec:
       containers:
