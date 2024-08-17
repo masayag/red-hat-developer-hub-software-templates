@@ -251,7 +251,7 @@ spec:
       name: Create ArgoCD Resources
       action: argocd:create-resources
       input:
-        appName: ${{ parameters.artifactId }}-bootstrap
+        appName: ${{ parameters.repoName }}-bootstrap
         argoInstance: main
         namespace: janus-argocd
         repoUrl: https://github.com/${{ parameters.orgName }}/${{ parameters.repoName }}-gitops.git
