@@ -213,6 +213,52 @@ spec:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: /catalog-info.yaml
 
+    - id: template-gitops-deployment
+      name: Generating Deployment Resources
+      action: fetch:template
+      input:
+        url: ./manifests
+        copyWithoutTemplating: []
+        values:
+          component_id: ${{ parameters.artifactId }}
+          description: ${{ parameters.description }}
+          destination: https://${{ parameters.repo.host }}/${{ parameters.repo.owner }}/${{parameters.artifactId}}-gitops.git
+          source_repository: https://${{ parameters.repo.host }}/${{ parameters.repo.owner }}/${{parameters.artifactId}}.git
+          repository_name: ${{parameters.artifactId}}
+          git_owner: ${{ parameters.repo.owner }}
+          cluster: .apps.cluster-lqhhl.sandbox3194.opentlc.com
+          namespace: ${{ parameters.artifactId }}-dev
+          image_registry: ${{ parameters.image_registry }}
+          image_host: ${{ parameters.image_host }}
+          image_organization: ${{ parameters.image_organization }}
+          image_name: ${{ parameters.artifactId }}
+          image_tag: ${{ parameters.image_tag }}
+          port: 8080
+          repository_host: ${{ parameters.repo.host }}
+          deployment_name: quarkus-template
+          user: ${{ user.entity.metadata.name }}
+        targetPath: ./tenant-gitops
+
+    - id: publish-gitops
+      name: Publishing to Resource Repository
+      action: publish:github
+      input:
+        repoUrl: "${{ parameters.repo.host }}?owner=${{ parameters.repo.owner }}&repo=${{parameters.artifactId}}-gitops"
+        title: gitops resources for ${{ parameters.artifactId }}
+        description: gitops resources for ${{ parameters.artifactId }}
+        sourcePath: ./tenant-gitops
+        repoVisibility: public
+
+    - id: create-argocd-resources
+      name: Create ArgoCD Resources
+      action: argocd:create-resources
+      input:
+        appName: ${{ parameters.artifactId }}-bootstrap
+        argoInstance: main
+        namespace: janus-argocd
+        repoUrl: https://${{ parameters.repo.host }}/${{ parameters.repo.owner }}/${{ parameters.artifactId }}-gitops.git
+        path: 'argocd/'
+
   output:
     links:
       - title: Open the Source Code Repository
