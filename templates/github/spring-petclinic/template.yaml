@@ -84,9 +84,9 @@ spec:
           title: Select a CI method
           type: string
           description: This action will create a CI pipeline for your application based on chosen method
-          default: ../../../skeletons/github-actions/
+          default: ./skeleton/github-actions/
           enum:
-            - ../../../skeletons/github-actions/
+            - ./skeleton/github-actions/
             - ../../../skeletons/tekton/
           enumNames:
             - GitHub Action
