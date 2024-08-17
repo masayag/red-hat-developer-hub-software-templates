@@ -205,6 +205,7 @@ spec:
         description: ${{ parameters.description }}
         repoUrl: github.com?owner=${{ parameters.orgName }}&repo=${{ parameters.repoName }}
         defaultBranch: main
+        repoVisibility: public        
 
     - id: register
       name: Registering the Catalog Info Component
@@ -243,10 +244,12 @@ spec:
       name: Publishing to Resource Repository
       action: publish:github
       input:
-        repoUrl: "${{ parameters.repo.host }}?owner=${{ parameters.repo.owner }}&repo=${{parameters.artifactId}}-gitops"
+        allowedHosts: ['github.com']
+        repoUrl: github.com?owner=${{ parameters.orgName }}&repo=${{ parameters.repoName }}-gitops
         title: gitops resources for ${{ parameters.artifactId }}
-        description: gitops resources for ${{ parameters.artifactId }}
+        description: gitops resources for ${{ parameters.description }}
         sourcePath: ./tenant-gitops
+        defaultBranch: main
         repoVisibility: public
 
     - id: create-argocd-resources
