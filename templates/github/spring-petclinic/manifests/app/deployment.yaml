@@ -5,9 +5,9 @@ metadata:
   labels:
     app: ${{ values.component_id }}
     app.kubernetes.io/component: web
-    app.kubernetes.io/instance: spring-petclinic
-    app.kubernetes.io/name: spring-petclinic
-    app.kubernetes.io/part-of: spring-petclinic
+    app.kubernetes.io/instance: ${{ values.component_id }}
+    app.kubernetes.io/name: ${{ values.component_id }}
+    app.kubernetes.io/part-of: ${{ values.component_id }}
     app.openshift.io/runtime: java
   name: ${{ values.component_id }}
 spec:
