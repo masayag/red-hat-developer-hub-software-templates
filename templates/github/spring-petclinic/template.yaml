@@ -98,6 +98,20 @@ spec:
                 # Show no extra properties when GitHub Actions is selected
                 ci:
                   const: ./skeleton/github-actions/
+                imageRepository:
+                  title: Select a registry
+                  type: string
+                  default: quay.io
+                  enum:
+                    - quay.io
+                    - image-registry.openshift-image-registry.svc:5000
+                  enumNames:
+                    - Quay
+                    - Internal OpenShift Registry
+                imageUrl:
+                  title: Image URL
+                  type: string
+                  description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
             - required:
                 - imageRepository
                 - namespace
@@ -207,8 +221,9 @@ spec:
         defaultBranch: main
         repoVisibility: public
         secrets:
-          foo: 'bar'
-          john: 'doe'        
+          REGISTRY_NAMESPACE: ''
+          REGISTRY_USERNAME: ''
+          REGISTRY_PASSWORD: ''        
 
     - id: register
       name: Registering the Catalog Info Component
