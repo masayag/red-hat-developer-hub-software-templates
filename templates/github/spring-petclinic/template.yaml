@@ -94,7 +94,13 @@ spec:
       dependencies:
         ci:
           oneOf:
-            - properties:
+            - required:
+                - imageRepository
+                - namespace
+                - imageUrl
+                - quayUserName
+                - quayPassword
+              properties:
                 ci:
                   const: ./skeleton/github-actions/
                 imageRepository:
@@ -230,9 +236,10 @@ spec:
         defaultBranch: main
         repoVisibility: public
         secrets:
-          REGISTRY_NAMESPACE: ''
-          REGISTRY_USERNAME: ''
-          REGISTRY_PASSWORD: ''        
+          REGISTRY_NAMESPACE: '${{ secrets.quayUsername }}'
+          REGISTRY_USERNAME: '${{ secrets.quayUsername }}'
+          REGISTRY_PASSWORD: '${{ secrets.quayPassword }}'
+          REGISTRY_URI: '${{ parameters.imageRepository }}'        
 
     - id: register
       name: Registering the Catalog Info Component
