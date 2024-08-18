@@ -116,7 +116,7 @@ spec:
                   type: string
                   description: The Quay.io username
                   ui:field: Secret
-                imageUrl:
+                quayPassword:
                   title: Quay password
                   type: string
                   description: The Quay.io password / token
