@@ -207,8 +207,8 @@ spec:
         defaultBranch: main
         repoVisibility: public
         secrets:
-          - foo: 'bar'
-          - john: 'doe'        
+          foo: 'bar',
+          john: 'doe'        
 
     - id: register
       name: Registering the Catalog Info Component
