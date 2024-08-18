@@ -84,9 +84,9 @@ spec:
           title: Select a CI method
           type: string
           description: This action will create a CI pipeline for your application based on chosen method
-          default: ./skeleton/github-actions/
+          default: ./github-actions/
           enum:
-            - ./skeleton/github-actions/
+            - ./github-actions/
             - ../../../skeletons/tekton/
           enumNames:
             - GitHub Action
@@ -101,7 +101,7 @@ spec:
                 - quayPassword
               properties:
                 ci:
-                  const: ./skeleton/github-actions/
+                  const: ./github-actions/
                 imageRepository:
                   title: Select a registry
                   type: string
