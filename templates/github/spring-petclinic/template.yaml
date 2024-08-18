@@ -95,7 +95,6 @@ spec:
         ci:
           oneOf:
             - properties:
-                # Show no extra properties when GitHub Actions is selected
                 ci:
                   const: ./skeleton/github-actions/
                 imageRepository:
@@ -112,6 +111,16 @@ spec:
                   title: Image URL
                   type: string
                   description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
+                quayUserName:
+                  title: Quay username or org
+                  type: string
+                  description: The Quay.io username
+                  ui:field: Secret
+                imageUrl:
+                  title: Quay password
+                  type: string
+                  description: The Quay.io password / token
+                  ui:field: Secret
             - required:
                 - imageRepository
                 - namespace
