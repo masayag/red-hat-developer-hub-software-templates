@@ -96,7 +96,6 @@ spec:
           oneOf:
             - required:
                 - imageRepository
-                - namespace
                 - imageUrl
                 - quayUserName
                 - quayPassword
