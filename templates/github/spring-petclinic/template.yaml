@@ -207,7 +207,7 @@ spec:
         defaultBranch: main
         repoVisibility: public
         secrets:
-          foo: 'bar',
+          foo: 'bar'
           john: 'doe'        
 
     - id: register
