@@ -96,7 +96,7 @@ spec:
           oneOf:
             - required:
                 - imageRepository
-                - quayImageNamespace
+                - imageNamespace
                 - quayUserName
                 - quayPassword
               properties:
@@ -112,7 +112,7 @@ spec:
                   enumNames:
                     - Quay
                     - Internal OpenShift Registry
-                quayNamespace:
+                imageNamespace:
                   title: Quay Namespace
                   type: string
                   description: The Quay.io namespace
@@ -236,7 +236,7 @@ spec:
         defaultBranch: main
         repoVisibility: public
         secrets:
-          REGISTRY_NAMESPACE: '${{ secrets.quayNamespace }}'
+          REGISTRY_NAMESPACE: '${{ secrets.imageNamespace }}'
           REGISTRY_USERNAME: '${{ secrets.quayUsername }}'
           REGISTRY_PASSWORD: '${{ secrets.quayPassword }}'
           REGISTRY_URI: '${{ parameters.imageRepository }}'        
