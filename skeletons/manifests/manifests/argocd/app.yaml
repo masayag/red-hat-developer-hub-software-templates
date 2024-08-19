@@ -2,6 +2,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ${{ values.repoName | dump }}
+  labels:
+    app: ${{ values.workflowId }}
+    rht-gitops.com/janus-argocd: ${{ values.workflowId }}
 spec:
   destination:
     namespace: ${{ values.namespace }}
