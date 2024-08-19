@@ -10,7 +10,7 @@ spec:
   source:
     directory:
       recurse: true
-    path: app
+    path: helm
     repoURL: ${{ values.destination }}
     targetRevision: main
   syncPolicy:
