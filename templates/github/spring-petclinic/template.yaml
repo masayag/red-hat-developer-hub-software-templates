@@ -235,6 +235,7 @@ spec:
         repoUrl: github.com?owner=${{ parameters.orgName }}&repo=${{ parameters.repoName }}
         defaultBranch: main
         repoVisibility: public
+        requiredApprovingReviewCount: 0
         secrets:
           REGISTRY_NAMESPACE: '${{ secrets.imageNamespace }}'
           REGISTRY_USERNAME: '${{ secrets.quayUserName }}'
