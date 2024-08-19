@@ -239,7 +239,8 @@ spec:
           REGISTRY_NAMESPACE: '${{ secrets.imageNamespace }}'
           REGISTRY_USERNAME: '${{ secrets.quayUserName }}'
           REGISTRY_PASSWORD: '${{ secrets.quayPassword }}'
-          REGISTRY_URI: '${{ parameters.imageRepository }}'        
+          REGISTRY_URI: '${{ parameters.imageRepository }}'       
+          GITOPS_REPO: 'https://github.com/${{ parameters.orgName }}/${{parameters.repoName}}-gitops.git' 
 
     - id: register
       name: Registering the Catalog Info Component
@@ -266,7 +267,8 @@ spec:
           port: 8080
           repository_host: github.com
           deployment_name: spring-petclinic-template
-          image: quay.io/nmalvankar/${{ parameters.artifactId }}:latest
+          image: quay.io/nmalvankar/${{ parameters.artifactId }}
+          tag: latest
           user: ${{ parameters.owner }}
         targetPath: ./tenant-gitops
 
