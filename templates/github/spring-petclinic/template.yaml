@@ -284,6 +284,7 @@ spec:
         sourcePath: ./tenant-gitops
         defaultBranch: main
         repoVisibility: public
+        requiredApprovingReviewCount: 0
 
     - id: create-argocd-resources
       name: Create ArgoCD Resources
