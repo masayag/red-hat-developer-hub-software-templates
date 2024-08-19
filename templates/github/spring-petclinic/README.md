@@ -1,3 +1,2 @@
-# Create a Spring Boot Backend application with a CI pipeline
-
+# Spring Petclinic Application software template
 Currently WIP
