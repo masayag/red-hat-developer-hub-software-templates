@@ -8,10 +8,11 @@ spec:
     server: https://kubernetes.default.svc
   project: janus
   source:
-    directory:
-      recurse: true
+    helm:
+      valueFiles:
+       - values.yaml
     path: helm
-    repoURL: ${{ values.destination }}
+    repoURL: 'https://github.com/nmalvank-org/spring-petclinic97-gitops.git'
     targetRevision: main
   syncPolicy:
     syncOptions:
