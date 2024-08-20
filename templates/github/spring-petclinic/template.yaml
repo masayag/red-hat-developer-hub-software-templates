@@ -220,13 +220,6 @@ spec:
           REGISTRY_URI: '${{ parameters.imageRepository }}'       
           GITOPS_REPO: '${{ parameters.orgName }}/${{parameters.repoName}}-gitops' 
 
-    - id: register
-      name: Registering the Catalog Info Component
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        catalogInfoPath: /catalog-info.yaml
-
     - id: catalogTemplate
       name: Generating the Catalog Info Component
       action: fetch:template
@@ -248,8 +241,14 @@ spec:
           groupId: ${{ parameters.groupId }}
           artifactId: ${{ parameters.artifactId }}
           javaPackageName: ${{ parameters.javaPackageName }}
-          sourceControl: github.com
-        
+          sourceControl: github.com          
+
+    - id: register
+      name: Registering the Catalog Info Component
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml        
 
     - id: template-gitops-deployment
       name: Generating Deployment Resources
