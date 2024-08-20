@@ -8,8 +8,8 @@ on:
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}
   IMAGE_TAGS: latest ${{ github.sha }}
-  IMAGE_REGISTRY: ${{ secrets.REGISTRY_URI }}
-  IMAGE_NAMESPACE: ${{ secrets.REGISTRY_NAMESPACE }}
+  IMAGE_REGISTRY: ${{ vars.REGISTRY_URI }}
+  IMAGE_NAMESPACE: ${{ vars.REGISTRY_NAMESPACE }}
   USERNAME: ${{ secrets.REGISTRY_USERNAME }}
   PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
@@ -52,7 +52,7 @@ jobs:
         id: update-image-digest
         uses: actions/checkout@v4
         with:
-          repository: ${{secrets.GITOPS_REPO}}
+          repository: ${{vars.GITOPS_REPO}}
           token: ${{secrets.REPO_TOKEN}}
 
       - name: Update Image Tag Values
