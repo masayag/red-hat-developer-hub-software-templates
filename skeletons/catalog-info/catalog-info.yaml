@@ -28,7 +28,7 @@ metadata:
     backstage.io/kubernetes-id: ${{ name }}
     backstage.io/kubernetes-label-selector: 'app=${{ values.label }}'
     backstage.io/kubernetes-namespace: '${{ values.namespace }}'
-    argocd/app-selector: rht-gitops.com/janus-argocd=${{ name }}-bootstrap
+    argocd/app-selector: rht-gitops.com/janus-argocd=${{ name }}
     backstage.io/techdocs-ref: dir:.
     {%- if values.sourceControl == "gitlab.com" %}
     gitlab.com/project-slug: ${{ values.orgName }}/${{ values.repoName }}
