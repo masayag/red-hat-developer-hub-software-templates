@@ -216,6 +216,7 @@ spec:
           applicationType: api
           description: ${{ parameters.description }}
           namespace: ${{ parameters.artifactId }}-dev
+          label: ${{ parameters.artifactId }}
           imageUrl: ${{ parameters.imageUrl }}
           imageBuilder: s2i-java
           imageRepository: ${{ parameters.imageRepository }}
