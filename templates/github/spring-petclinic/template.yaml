@@ -116,7 +116,7 @@ spec:
                   title: Quay.io Namespace
                   type: string
                   description: The Quay.io namespace or organization
-                  ui:field: Secret
+                  #ui:field: Secret
                 quayUserName:
                   title: Quay.io username
                   type: string
@@ -238,7 +238,7 @@ spec:
         repoVisibility: public
         requiredApprovingReviewCount: 0
         repoVariables:
-          REGISTRY_NAMESPACE: '${{ secrets.imageNamespace }}'
+          REGISTRY_NAMESPACE: '${{ parameters.imageNamespace }}'
           REGISTRY_URI: '${{ parameters.imageRepository }}'       
           GITOPS_REPO: '${{ parameters.orgName }}/${{parameters.repoName}}-gitops' 
         secrets:
@@ -270,7 +270,7 @@ spec:
           port: 8080
           repository_host: github.com
           deployment_name: spring-petclinic-template
-          image: quay.io/${{ secrets.imageNamespace }}/${{ parameters.repoName }}
+          image: quay.io/${{ parameters.imageNamespace }}/${{ parameters.repoName }}
           tag: latest
           user: ${{ parameters.owner }}
         targetPath: ./tenant-gitops
