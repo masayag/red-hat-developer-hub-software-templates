@@ -9,7 +9,7 @@ env:
   IMAGE_NAME: ${{ github.event.repository.name }}
   IMAGE_TAGS: latest ${{ github.sha }}
   IMAGE_REGISTRY: quay.io
-  IMAGE_NAMESPACE: ${{ secrets.REGISTRY_NAMESPACE }}
+  IMAGE_NAMESPACE: ${{ vars.REGISTRY_NAMESPACE }}
   USERNAME: ${{ secrets.REGISTRY_USERNAME }}
   PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
