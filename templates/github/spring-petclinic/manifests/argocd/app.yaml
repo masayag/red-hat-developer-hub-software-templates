@@ -12,7 +12,7 @@ spec:
       valueFiles:
        - values.yaml
     path: helm
-    repoURL: 'https://github.com/nmalvank-org/spring-petclinic97-gitops.git'
+    repoURL: ${{ values.destination }}
     targetRevision: main
   syncPolicy:
     syncOptions:
