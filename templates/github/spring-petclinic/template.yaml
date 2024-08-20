@@ -2,8 +2,8 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: my-spring-petclinic-template
-  title: Create a Spring Pet Clinic application with a CI pipeline
-  description: Create a starter Spring Pet Clinic application with a CI pipeline
+  title: Create a Spring Pet Clinic application with GitHub Action & ArgoCD
+  description: Create a Spring Pet Clinic application with GitHub Action & ArgoCD
   tags:
     - recommended
     - spring
