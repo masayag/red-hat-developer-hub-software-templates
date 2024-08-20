@@ -237,12 +237,13 @@ spec:
         defaultBranch: main
         repoVisibility: public
         requiredApprovingReviewCount: 0
-        secrets:
+        repoVariables:
           REGISTRY_NAMESPACE: '${{ secrets.imageNamespace }}'
-          REGISTRY_USERNAME: '${{ secrets.quayUserName }}'
-          REGISTRY_PASSWORD: '${{ secrets.quayPassword }}'
           REGISTRY_URI: '${{ parameters.imageRepository }}'       
           GITOPS_REPO: '${{ parameters.orgName }}/${{parameters.repoName}}-gitops' 
+        secrets:
+          REGISTRY_USERNAME: '${{ secrets.quayUserName }}'
+          REGISTRY_PASSWORD: '${{ secrets.quayPassword }}'
 
     - id: register
       name: Registering the Catalog Info Component
