@@ -105,27 +105,27 @@ spec:
                 imageRepository:
                   title: Select a registry
                   type: string
-                  default: quay.io
+                  default: quay-lzh25.apps.cluster-lzh25.sandbox662.opentlc.com
                   enum:
-                    - quay.io
+                    - quay-lzh25.apps.cluster-lzh25.sandbox662.opentlc.com
                     - image-registry.openshift-image-registry.svc:5000
                   enumNames:
                     - Quay
                     - Internal OpenShift Registry
                 imageNamespace:
-                  title: Quay.io Namespace
+                  title: Quay Namespace
                   type: string
-                  description: The Quay.io namespace or organization
+                  description: The Quay namespace or organization
                   #ui:field: Secret
                 quayUserName:
-                  title: Quay.io username
+                  title: Quay username
                   type: string
-                  description: The Quay.io username
+                  description: The Quay username
                   ui:field: Secret
                 quayPassword:
                   title: Quay password
                   type: string
-                  description: The Quay.io password / token
+                  description: The Quay token
                   ui:field: Secret
             - required:
                 - imageRepository
@@ -137,9 +137,9 @@ spec:
                 imageRepository:
                   title: Select a registry
                   type: string
-                  default: quay.io
+                  default: quay-lzh25.apps.cluster-lzh25.sandbox662.opentlc.com
                   enum:
-                    - quay.io
+                    - quay-lzh25.apps.cluster-lzh25.sandbox662.opentlc.com
                     - image-registry.openshift-image-registry.svc:5000
                   enumNames:
                     - Quay
@@ -147,7 +147,7 @@ spec:
                 imageUrl:
                   title: Image URL
                   type: string
-                  description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
+                  description: The Quay or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
                 namespace:
                   title: Namespace
                   type: string
