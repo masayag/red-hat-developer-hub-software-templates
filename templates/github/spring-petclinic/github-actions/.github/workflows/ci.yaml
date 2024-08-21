@@ -35,14 +35,14 @@ jobs:
           containerfiles: |
             ./Dockerfile
 
-      - name: Log in to Quay.io
+      - name: Log in to Quay registry
         uses: redhat-actions/podman-login@v1
         with:
           username: ${{ env.USERNAME }}
           password: ${{ env.PASSWORD }}
           registry: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAMESPACE }}
 
-      - name: Push To Quay.io
+      - name: Push To Quay registry
         id: push-to-quay
         uses: redhat-actions/push-to-registry@v2
         with:
