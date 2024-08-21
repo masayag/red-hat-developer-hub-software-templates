@@ -8,14 +8,16 @@ on:
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}
   IMAGE_TAGS: latest ${{ github.sha }}
-  IMAGE_REGISTRY: ${{ secrets.REGISTRY_URI }}
-  IMAGE_NAMESPACE: ${{ secrets.REGISTRY_NAMESPACE }}
+  IMAGE_REGISTRY: ${{ vars.REGISTRY_URI }}
+  IMAGE_NAMESPACE: ${{ vars.REGISTRY_NAMESPACE }}
   USERNAME: ${{ secrets.REGISTRY_USERNAME }}
   PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
 jobs:
   build-and-push-image:
     runs-on: ubuntu-24.04
+    outputs:
+      image: ${{ steps.build-image.outputs.image }}
     permissions:
       contents: read
       packages: write
@@ -33,14 +35,14 @@ jobs:
           containerfiles: |
             ./Dockerfile
 
-      - name: Log in to Quay.io
+      - name: Log in to Quay registry
         uses: redhat-actions/podman-login@v1
         with:
           username: ${{ env.USERNAME }}
           password: ${{ env.PASSWORD }}
           registry: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAMESPACE }}
 
-      - name: Push To Quay.io
+      - name: Push To Quay registry
         id: push-to-quay
         uses: redhat-actions/push-to-registry@v2
         with:
@@ -48,11 +50,19 @@ jobs:
           tags: ${{ steps.build-image.outputs.tags }}
           registry: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAMESPACE }}
  
+  update-image-and-create-pull-request:
+    needs: build-and-push-image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
       - name: Update Image Digest
         id: update-image-digest
         uses: actions/checkout@v4
         with:
-          repository: ${{secrets.GITOPS_REPO}}
+          repository: ${{vars.GITOPS_REPO}}
           token: ${{secrets.REPO_TOKEN}}
 
       - name: Update Image Tag Values
@@ -69,5 +79,5 @@ jobs:
         with:
           title: Update Spring Petclinic image digest
           branch: update-image-${{ github.sha }}
-          commit-message: update backend image tag to ${{ steps.build-image.outputs.image }}
+          commit-message: update spring-petclinic image tag
           token: ${{secrets.REPO_TOKEN}}
