@@ -10,8 +10,8 @@ metadata:
     - java
     - maven
 spec:
-  owner: guest
-  system: Janus-Orchestrator
+  owner: janus-orchestrator
+  system: janus-orchestrator
   type: service
 
   parameters:
