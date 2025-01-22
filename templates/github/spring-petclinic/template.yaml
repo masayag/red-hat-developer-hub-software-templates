@@ -105,9 +105,9 @@ spec:
                 imageRepository:
                   title: Select a registry
                   type: string
-                  default: quay-lzh25.apps.cluster-lzh25.sandbox662.opentlc.com
+                  default: quay.io
                   enum:
-                    - quay-lzh25.apps.cluster-lzh25.sandbox662.opentlc.com
+                    - quay.io
                     - image-registry.openshift-image-registry.svc:5000
                   enumNames:
                     - Quay
@@ -137,9 +137,9 @@ spec:
                 imageRepository:
                   title: Select a registry
                   type: string
-                  default: quay-lzh25.apps.cluster-lzh25.sandbox662.opentlc.com
+                  default: quay.io
                   enum:
-                    - quay-lzh25.apps.cluster-lzh25.sandbox662.opentlc.com
+                    - quay.io
                     - image-registry.openshift-image-registry.svc:5000
                   enumNames:
                     - Quay
